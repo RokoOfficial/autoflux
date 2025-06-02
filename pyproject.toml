@@ -1,0 +1,15 @@
+-e [tool.poetry]
+name = "autoflux"
+version = "0.1.0"
+description = "Sistema de paralelismo inteligente AutoFlux"
+authors = ["RokoOfficial <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.8"
+numpy = "*"
+pandas = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
