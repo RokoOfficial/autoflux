@@ -1,33 +1,31 @@
-# AutoFlux
+# 🌀 AutoFlux
 
-AutoFlux é um sistema de paralelismo inteligente e seguro para Python, criado para facilitar a execução eficiente de funções que trabalham com coleções de dados. Com suporte a múltiplas estratégias (`sequential`, `threads`, `processes`, `auto`), o AutoFlux realiza fallback automático para execução sequencial em ambientes restritos ou em caso de erro.
-
----
-
-## 🚀 Aplicações Possíveis
-
-AutoFlux pode ser utilizado em diversos cenários, como:
-
-- 🧮 **Processamento Numérico em Lote**: cálculos matemáticos ou científicos sobre arrays de dados.
-- 🧠 **Análise de Texto em Massa**: pré-processamento, limpeza ou anotação de grandes volumes de texto.
-- 🔍 **Avaliação de Modelos ou Inferência**: execução paralela de pipelines de machine learning.
-- 🧪 **Testes Automatizados em Paralelo**: execução distribuída de baterias de testes.
-- 📊 **Manipulação de DataFrames**: quando convertidos para listas ou iteráveis.
-- 🌐 **Tarefas I/O-bound**: chamadas de rede, scraping, leitura/gravação de arquivos.
+**AutoFlux** é um sistema inteligente de paralelismo para Python que abstrai e automatiza a execução de funções em paralelo, com segurança e fallback automáticos. Ideal para tarefas que envolvem grandes volumes de dados, análise textual, processamento numérico, e mais.
 
 ---
 
-## 📦 Instalação
+## 🚀 Aplicações
+
+AutoFlux pode ser aplicado em:
+
+- 🧮 **Processamento Numérico**: operações matemáticas em lotes.
+- 🧠 **Análise de Texto**: pré-processamento, tokenização ou extração de features.
+- 📊 **Manipulação de Dados**: sobre listas, arrays, DataFrames.
+- 🧪 **Testes Automatizados**: execução paralela de casos de teste.
+- 🌐 **Tarefas de I/O**: scraping, leitura de arquivos, chamadas de API.
+
+---
+
+## 🧰 Instalação
 
 ```bash
 # Requer Python >= 3.8
-cd COGNITIVE/AUTOFLUX
 poetry install  # ou pip install .
 ```
 
 ---
 
-## 🧠 Uso Básico
+## 🧠 Exemplo de Uso
 
 ```python
 from autoflux import AutoFlux
@@ -38,67 +36,54 @@ flux = AutoFlux(max_main_cores=2, max_sub_cores=4)
 def process(data: list[int]) -> list[int]:
     return [x * 2 for x in data]
 
-result = process([1, 2, 3, 4, 5])
+result = process([1, 2, 3, 4])
 ```
 
 ---
 
-## 🎯 Estratégias Suportadas
+## ⚙️ Estratégias Suportadas
 
-- `'auto'`: decide entre sequencial e threads baseado no tamanho dos dados.
-- `'threads'`: usa `ThreadPoolExecutor` com controle de chunking.
-- `'processes'`: usa `ProcessPoolExecutor` com fallback interno para threads.
-- `'sequential'`: execução simples, sem paralelismo.
+- `'auto'`: decide entre threads e execução sequencial com base no volume.
+- `'threads'`: paraleliza usando `ThreadPoolExecutor`.
+- `'processes'`: usa `ProcessPoolExecutor` com fallback.
+- `'sequential'`: execução normal, sem paralelismo.
 
 ---
 
-## 🧪 Testes
+## 🧪 Testando
 
-Execute o script de exemplo com:
+Execute os testes de exemplo:
 ```bash
-PYTHONPATH=. python3 COGNITIVE/AUTOFLUX/examples.py
+PYTHONPATH=. python3 examples.py
 ```
 
 ---
 
-## 🧰 Estrutura do Projeto
+## 📁 Estrutura do Projeto
 
 ```
 AUTOFLUX/
-├── core.py          # Classe AutoFlux
+├── core.py          # Núcleo do sistema AutoFlux
 ├── utils.py         # Funções auxiliares
-├── strategies.py    # Lógicas de execução (threads, processos)
-├── decorators.py    # Decorador parallel
+├── strategies.py    # Execução com threads/processos
+├── decorators.py    # Decoradores paralelizadores
 ├── examples.py      # Testes e demonstrações
-├── __init__.py      # Exporta AutoFlux
-├── pyproject.toml   # Configuração Poetry
-└── README.md        # Esta documentação
+├── __init__.py      # Exportações do pacote
+├── pyproject.toml   # Configuração do projeto
+├── README.md        # Esta documentação
+└── LICENSE          # Licença MIT
 ```
 
 ---
 
-## 🧩 Requisitos
+## 🔐 Segurança
 
-- Python 3.8+
-- numpy
-- pandas *(opcional, usado se DataFrames forem processados)*
-- psutil *(opcional, para melhor detecção de ambiente)*
+- Fallback automático caso paralelismo falhe
+- Controle de núcleos por camada (main/sub)
+- Detecção de ambiente restrito (modo seguro)
 
----
-
-## 🔒 Segurança e Robustez
-
-- O sistema detecta automaticamente restrições de ambiente.
-- Em caso de erro, faz fallback para modo seguro sequencial.
-- Exceções internas em threads são capturadas e redirecionadas.
-
----
-
--e 
 ---
 
 ## 📜 Licença
 
-MIT License
-
-Autor: Roko
+MIT License — Autor: **Roko**
