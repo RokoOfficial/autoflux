@@ -94,7 +94,11 @@ AUTOFLUX/
 
 ---
 
+-e 
+---
+
 ## 📜 Licença
 
-MIT License — RokoOfficial
+MIT License
 
+Autor: Roko
